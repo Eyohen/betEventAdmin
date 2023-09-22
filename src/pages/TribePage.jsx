@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import newRequest from '../utils/newRequest'
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Link, useNavigate } from "react-router-dom";
 
 const TribePage = () => {
@@ -39,6 +39,31 @@ const TribePage = () => {
   const handleSearch = () => {
     setSearch(input);
   };
+
+  const queryClient = useQueryClient()
+    const mutation = useMutation({
+      mutationFn: (checkdata) => {
+
+        console.log('this is regdata',checkdata)
+    
+        window.alert(JSON.stringify(checkdata))
+    
+        return newRequest.post("events/tribe/mark/participant", checkdata);
+    
+      },
+      onSuccess:()=>{
+        queryClient.invalidateQueries(['users'])
+        navigate("/seeteammembers")
+      }
+    
+    })
+
+    const handleCheck = (e) => {
+        e.preventDefault()
+        const betwinnerId = e.target[0].value;
+       
+        mutation.mutate({betwinnerId})
+      }
 
     
 
@@ -79,16 +104,25 @@ const TribePage = () => {
                 <th scope="col" class="px-6 py-3">
                     phone
                 </th>
-                {/* <th scope="col" class="px-6 py-3">
-                    Action
-                </th> */}
+                <th scope="col" class="px-6 py-3">
+                    shirt size
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    gender
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    socials
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    check
+                </th>
             </tr>
         </thead>
         <tbody>
             {data?.data?.participants.filter(user => user.BetTribeLog !== null).map(user => (
                  <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700" key={user.id}>
                  <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                   <img className='w-11 h-11' src={user?.image} alt=""/>
+                   <img className='w-11 h-11' src={user?.BetTribeLog?.profileImage} alt=""/>
                  </th>
                  <td class="px-6 py-4">
                  {user.firstName}
@@ -102,9 +136,25 @@ const TribePage = () => {
                  <td class="px-6 py-4">
                      {user.phone}
                  </td>
-                 {/* <td class="px-6 py-4">
-                     <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
-                 </td> */}
+                 <td class="px-6 py-4">
+                     {user.BetTribeLog.shirtSize}
+                 </td>
+                 <td class="px-6 py-4">
+                     {user.BetTribeLog.gender}
+                 </td>
+                 <td class="px-6 py-4">
+                     {user.BetTribeLog.socials}
+                 </td>
+                 <td class="px-6 py-4">
+                     {/* <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a> */}
+                     <input
+          type="checkbox"
+        //   value={isSubscribed}
+         onChange={handleCheck}
+          id="email"
+          name="email"
+        />
+                 </td>
              </tr>
 ))}
            
