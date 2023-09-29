@@ -132,6 +132,9 @@ const TribePage = () => {
               socials
             </th>
             <th scope="col" class="px-6 py-3">
+              betwinner ID
+            </th>
+            <th scope="col" class="px-6 py-3">
               check
             </th>
           </tr>
@@ -161,6 +164,7 @@ const TribePage = () => {
                 <td class="px-6 py-4">{user.BetTribeLog.shirtSize}</td>
                 <td class="px-6 py-4">{user.BetTribeLog.gender}</td>
                 <td class="px-6 py-4">{user.BetTribeLog.socials}</td>
+                <td class="px-6 py-4">{user.BetTribeLog.betwinnerId}</td>
                 <td class="px-6 py-4">
                   {user.BetTribeLog.isVerified ? (
                     <input
