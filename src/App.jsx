@@ -23,7 +23,7 @@ function App() {
   const Layout = () => {
     return (
       
-      <div className='p-3'>
+      <div className=''>
           <QueryClientProvider client={queryClient}>
       <Navbar/>
       <Outlet/>
@@ -44,12 +44,9 @@ function App() {
         children:[
             {
                 path:"/",
-                element:<Register/>,
+                element:<Login/>,
             },
-            {
-              path:"/login",
-              element:<Login/>,
-          },
+         
             {
               path:"/home",
               element:<Home/>,
