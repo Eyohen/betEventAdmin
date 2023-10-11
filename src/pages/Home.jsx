@@ -192,6 +192,9 @@ const Home = () => {
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-5">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
+          <th scope="col" class="px-6 py-3">
+              id
+            </th>
             <th scope="col" class="px-6 py-3">
               first name
             </th>
@@ -210,11 +213,12 @@ const Home = () => {
           </tr>
         </thead>
         {/* <tbody> */}
-        {data?.data?.participants?.map((user) => (
+        {data?.data?.participants?.map((user,index) => (
           <tr
             class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
             key={user.id}
           >
+            <td class="px-6 py-4">{index + 1}</td>
             <td class="px-6 py-4">{user.firstName}</td>
             <td class="px-6 py-4">{user.lastName}</td>
             <td class="px-6 py-4">{user.email}</td>

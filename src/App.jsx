@@ -46,6 +46,10 @@ function App() {
                 path:"/",
                 element:<Login/>,
             },
+            {
+              path:"/register",
+              element:<Register/>,
+          },
          
             {
               path:"/home",

@@ -107,6 +107,9 @@ const TribePage = () => {
       <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400 mt-5">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr>
+          <th scope="col" class="px-6 py-3">
+              id
+            </th>
             <th scope="col" class="px-6 py-3">
               image
             </th>
@@ -142,15 +145,17 @@ const TribePage = () => {
         <tbody>
           {data?.data?.participants
             .filter((user) => user.BetTribeLog !== null)
-            .map((user) => (
+            .map((user, index) => (
               <tr
                 class="bg-white border-b dark:bg-gray-900 dark:border-gray-700"
                 key={user.id}
               >
+                 <td class="px-6 py-4">{index + 1}</td>
                 <th
                   scope="row"
                   class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                 >
+                  
                   <img
                     className="w-11 h-11"
                     src={user?.BetTribeLog?.profileImage}
